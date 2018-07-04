@@ -106,7 +106,12 @@ deploy:
         name: Export Kubernetes Config
         code: |
           export KUBECONFIG="$WERCKER_ROOT/kubernetes/kube.config"
-          
+
+    - kubectl:
+        cwd: $WERCKER_ROOT/kubernetes/deployment
+        insecure-skip-tls-verify: true
+        command: delete secret ocir-secret
+
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
         insecure-skip-tls-verify: true
@@ -115,4 +120,12 @@ deploy:
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
         insecure-skip-tls-verify: true
-        command: apply -f .
+        command: create secret docker-registry ocir-secret --docker-server=iad.ocir.io --docker-username='gse00014445/api.user' --docker-password='S71R4Zx>JLJ8VQ.f>6!r' --docker-email='kallol.chaudhuri@oracle.com'
+        
+    - kubectl:
+        cwd: $WERCKER_ROOT/kubernetes/deployment
+        insecure-skip-tls-verify: true
+        command: apply -f .        
+        
+
+        
