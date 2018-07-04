@@ -107,15 +107,7 @@ deploy:
         code: |
           export KUBECONFIG="$WERCKER_ROOT/kubernetes/kubeconfig.dat"
 
-    - kubectl:
-        cwd: $WERCKER_ROOT/kubernetes/deployment
-        insecure-skip-tls-verify: true
-        command: delete secret ocir-secret
-
-    - kubectl:
-        cwd: $WERCKER_ROOT/kubernetes/deployment
-        insecure-skip-tls-verify: true
-        command: delete service webapp
+    
      
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
