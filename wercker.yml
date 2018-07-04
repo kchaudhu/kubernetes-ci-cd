@@ -105,7 +105,7 @@ deploy:
     - script:
         name: Export Kubernetes Config
         code: |
-          export KUBECONFIG="$WERCKER_ROOT/kubernetes/kube.config"
+          export KUBECONFIG="$WERCKER_ROOT/kubernetes/kubeconfig.dat"
 
     - kubectl:
         cwd: $WERCKER_ROOT/kubernetes/deployment
